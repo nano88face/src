@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meata charset="utf-8">
+	<title>神経衰弱ゲーム</title>
+	<style>
+		input{
+			font-size: 80px;
+		}
+	</style>
+
+</head>
+<body>
+	<h1>神経衰弱</h1>
+	<p>Score: <span id="score"></score></p>
+	<input type="button" id="card_0" value="?" onclick="flip(0);">
+	<input type="button" id="card_1" value="?" onclick="flip(1);">
+	<input type="button" id="card_2" value="?" onclick="flip(2);">
+	<input type="button" id="card_3" value="?" onclick="flip(3);"><br>
+	<input type="button" id="card_4" value="?" onclick="flip(4);">
+	<input type="button" id="card_5" value="?" onclick="flip(5);">
+	<input type="button" id="card_6" value="?" onclick="flip(6);">
+	<input type="button" id="card_7" value="?" onclick="flip(7);"><br>
+	<input type="button" id="card_8" value="?" onclick="flip(8);">
+	<input type="button" id="card_9" value="?" onclick="flip(9);">
+	<input type="button" id="card_10" value="?" onclick="flip(10);">
+	<input type="button" id="card_11" value="?" onclick="flip(11);"><br>
+	<input type="button" id="card_12" value="?" onclick="flip(12);">
+	<input type="button" id="card_13" value="?" onclick="flip(13);">
+	<input type="button" id="card_14" value="?" onclick="flip(14);">
+	<input type="button" id="card_15" value="?" onclick="flip(15);"><br>
+	
+	<script>
+		var cards = [],
+		    CARDS_NUM = 16,
+		    currentNum, //0 - 7
+		    opendCard,  //0-15
+		    correctNum = 0;
+		    
+		
+		function flip(n){
+			var card = document.getElementById('card_'+n);
+			card.value = cards[n];
+			if(typeof currentNum == 'undefined'){
+				openedCard = n;
+				currentNum = cards[n];
+			}else{
+				judge(n);
+				currentNum = undefined;
+			}
+		}
+		
+		function judge(n){
+			if(currentNum == cards[n]){
+				//正解
+				correctNum++;
+				if(correctNum == CARDS_NUM/2){
+					alert("あなたのスコアは....");
+			} else {
+				//不正解
+				document.getElementById('card_'+opendCard).value = '?';
+				document.getElementById('card_'+n).value = '?';
+								
+			}
+		}
+		    
+		function initCards(){
+			var num,
+				cardsIndex;
+				
+			for(var i=0; i<CARDS_NUM; i++){
+				num = Math.floor(i/2);
+				do{
+					
+					cardsIndex = Math.floor(Math.random()*CARDS_NUM);
+					
+				}while(typeof cards[cardsIndex] !== 'undefined');
+				cards[cardsIndex] = num;
+			}
+			console.log(cards);	
+		}
+		
+		
+		
+		initCards();
+	
+	</script>
+
+</body>
+</html>
