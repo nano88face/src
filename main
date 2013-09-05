@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+
+    <script src="https://www.google.com/jsapi"    type="text/javascript"></script>
+
+	<title>神経衰弱ゲーム</title>
+	<style>
+		input{
+			font-size: 80px;
+		}
+	</style>
+
+</head>
+<body>
+	<h1>神経衰弱</h1>
+	<p>Score: <span id="score"></score></p>
+	<input type="button" id="card_0" value="?" onclick="flip(0);">
+	<input type="button" id="card_1" value="?" onclick="flip(1);">
+	<input type="button" id="card_2" value="?" onclick="flip(2);">
+	<input type="button" id="card_3" value="?" onclick="flip(3);"><br>
+	<input type="button" id="card_4" value="?" onclick="flip(4);">
+	<input type="button" id="card_5" value="?" onclick="flip(5);">
+	<input type="button" id="card_6" value="?" onclick="flip(6);">
+	<input type="button" id="card_7" value="?" onclick="flip(7);"><br>
+	<input type="button" id="card_8" value="?" onclick="flip(8);">
+	<input type="button" id="card_9" value="?" onclick="flip(9);">
+	<input type="button" id="card_10" value="?" onclick="flip(10);">
+	<input type="button" id="card_11" value="?" onclick="flip(11);"><br>
+	<input type="button" id="card_12" value="?" onclick="flip(12);">
+	<input type="button" id="card_13" value="?" onclick="flip(13);">
+	<input type="button" id="card_14" value="?" onclick="flip(14);">
+	<input type="button" id="card_15" value="?" onclick="flip(15);"><br>
+	
+
+
+  <head>
+
+   <! //
+    google.load('search', '1');
+
+  <!-- Google AJAX API ローダーのライブラリをインクルードする -->
+
+
+<script type="text/javascript">
+
+  function onLoad()
+  {
+      var restriction = { ned:'jp' };
+
+      var newsSearch = new google.search.NewsSearch();
+      newsSearch.setSearchCompleteCallback( this, SearchComplete, [ newsSearch ] );
+      newsSearch.setRestriction( google.search.Search.RESTRICT_EXTENDED_ARGS, restriction );
+
+      newsSearch.execute( '神経衰弱' );
+  }
+
+  function SearchComplete( searcher )
+  {
+      if( searcher.results )
+      {
+          var content = document.getElementById( 'content' );
+          for( var i = 0; i < searcher.results.length; i++ )
+          {
+              content.appendChild( searcher.results[ i ].html );
+
+              
+              if(searcher.results[ i ].image !== undefined) {
+                 var element = document.createElement('img');
+                 element.src = searcher.results[ i ].image.tbUrl ;
+                 content.appendChild(element);
+              }
+
+              
+          }
+          document.getElementById( 'searchcontrol' ).innerHTML = "" ;
+      }
+  }
+
+  google.load( 'search', '1' );
+  google.setOnLoadCallback( onLoad );
+
+</script>
+ <h1>神経衰弱ニュース</h1>
+<div id="content"></div>
+    <div id="searchcontrol">Loading</div>
+  </body>
+</html>
